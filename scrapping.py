@@ -15,8 +15,6 @@ def ryr_precio():
     #Get the products
     products_price = soup.find_all('h4', class_='mt-0 pecio_final ft')
 
-    
-
     #Clean the products
     products_price = [price.get_text().replace('Precio especial',' ') for price in products_price]
 
