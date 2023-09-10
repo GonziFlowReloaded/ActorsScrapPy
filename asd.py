@@ -1,11 +1,22 @@
-from bard_api import summarizer
+import multiprocessing
 
-input_text = '''
-En un día soleado, John fue al parque a jugar béisbol con sus amigos. Golpeó un jonrón y todos aplaudieron.
-'''
- 
-# Resume el texto de entrada con Bard-API
-summary = summarizer.summarize(input_text)
- 
-print(summary)
-# Output: "John golpeó un jonrón mientras jugaba a béisbol con amigos en el parque."
+def funcion_1():
+    print("Función 1 ejecutándose")
+
+def funcion_2():
+    print("Función 2 ejecutándose")
+
+if __name__ == "__main__":
+    # Crear dos procesos, uno para cada función
+    proceso1 = multiprocessing.Process(target=funcion_1)
+    proceso2 = multiprocessing.Process(target=funcion_2)
+    
+    # Iniciar los procesos
+    proceso1.start()
+    proceso2.start()
+    
+    # Esperar a que ambos procesos terminen
+    proceso1.join()
+    proceso2.join()
+    
+    print("Ambos procesos han terminado")
